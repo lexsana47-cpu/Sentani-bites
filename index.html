@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentani Bites - Premium Culinary Directory</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Pro Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase JS Library CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50/50 text-slate-900 selection:bg-orange-500 selection:text-white antialiased">
+
+    <!-- Floating Navbar -->
+    <div class="fixed top-4 inset-x-4 z-50 max-w-5xl mx-auto">
+        <header class="bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] rounded-2xl px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2.5">
+                <div class="bg-orange-500 text-white p-2 rounded-xl shadow-lg shadow-orange-500/20 flex items-center justify-center">
+                    <i class="fa-solid fa-fire-flame-curved text-lg"></i>
+                </div>
+                <h1 class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-slate-950 to-slate-700 bg-clip-text text-transparent">Sentani<span class="text-orange-500">Bites.</span></h1>
+            </div>
+            <nav class="hidden md:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/40">
+                <a href="#" class="bg-white text-slate-900 shadow-sm text-xs font-bold px-4 py-2 rounded-lg">Home</a>
+                <a href="#directory-section" class="text-slate-600 hover:text-slate-900 text-xs font-semibold px-4 py-2 rounded-lg">Rekomendasi</a>
+                <a href="#admin-section" class="text-slate-600 hover:text-slate-900 text-xs font-semibold px-4 py-2 rounded-lg bg-orange-50 text-orange-600 ml-2">Tambah Warung</a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-36 pb-20 px-4 overflow-hidden bg-white">
+        <div class="absolute inset-0 bg-radial from-orange-500/5 via-transparent to-transparent -z-10"></div>
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="inline-flex items-center gap-1.5 bg-orange-50 text-orange-600 text-[11px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-orange-200/60 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span> Cloud Database Connected
+            </span>
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-950 mb-6 leading-[1.1]">
+                Petualangan Rasa <br><span class="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">Makan Enak di Sentani</span>
+            </h2>
+            <p class="text-base md:text-lg text-slate-500 max-w-xl mx-auto mb-10 font-medium leading-relaxed">
+                Nggak perlu pusing nyari warung legalendars yang selalu rame, bro. Kriteria rasa juara dan spot paling hits seputar Sentani ada di sini.
+            </p>
+            
+            <!-- Search Bar -->
+            <div class="max-w-lg mx-auto bg-slate-100/80 p-2 rounded-2xl border border-slate-200/60 shadow-sm focus-within:border-orange-500/40 focus-within:bg-white focus-within:shadow-xl focus-within:shadow-orange-500/5 transition-all duration-300">
+                <div class="flex items-center px-3">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400 mr-3 text-lg"></i>
+                    <input type="text" id="searchInput" placeholder="Ketik menunya, bro... (papeda, ayam bakar, es krim)" class="w-full py-2.5 bg-transparent text-slate-900 font-medium text-sm focus:outline-none placeholder:text-slate-400">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Directory Content -->
+    <main id="directory-section" class="max-w-6xl mx-auto px-4 py-12">
+        <!-- Filter Kategori -->
+        <div class="flex flex-wrap gap-2.5 justify-center mb-16">
+            <button onclick="filterCategory('all')" class="category-btn active px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer bg-slate-950 text-white shadow-md">Semua Tempat</button>
+            <button onclick="filterCategory('khas')" class="category-btn px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer bg-white text-slate-600 border border-slate-200/60 hover:bg-slate-50">🐟 Kuliner Lokal</button>
+            <button onclick="filterCategory('resto')" class="category-btn px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer bg-white text-slate-600 border border-slate-200/60 hover:bg-slate-50">🍗 Rumah Makan</button>
+            <button onclick="filterCategory('dessert')" class="category-btn px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer bg-white text-slate-600 border border-slate-200/60 hover:bg-slate-50">🍦 Dessert & Es</button>
+        </div>
+
+        <!-- Not Found / Loading State -->
+        <div id="notFoundMessage" class="hidden text-center py-20 bg-white rounded-3xl border border-slate-200/50 max-w-sm mx-auto shadow-sm">
+            <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400 text-xl"><i class="fa-solid fa-magnifying-glass-minus"></i></div>
+            <p id="notFoundText" class="text-base text-slate-800 font-bold">Menghubungkan ke Cloud Database...</p>
+        </div>
+
+        <!-- Bento Grid Container -->
+        <div id="restoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </main>
+
+    <!-- Admin Section -->
+    <section id="admin-section" class="max-w-3xl mx-auto px-4 py-16 mt-12 bg-white rounded-3xl border border-slate-200/60 shadow-sm">
+        <div class="text-center mb-8">
+            <h3 class="text-2xl font-extrabold text-slate-950">Form Tambah Kuliner Baru 🚀</h3>
+            <p class="text-slate-500 text-sm mt-1">Ketemu tempat makan enak baru di Sentani, bro? Masukin datanya di sini biar langsung tampil secara online seluruh dunia!</p>
+        </div>
+
+        <form id="addRestoForm" class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Nama Warung / Resto</label>
+                    <input type="text" id="formName" required placeholder="Contoh: Sate Gabus Sentani" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-orange-500 text-sm font-medium">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Kategori</label>
+                    <select id="formCategory" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-orange-500 text-sm font-medium">
+                        <option value="khas">🐟 Kuliner Lokal (Papeda/Ikan)</option>
+                        <option value="resto">🍗 Rumah Makan Umum</option>
+                        <option value="dessert">🍦 Dessert & Es</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Menu Utama + Harga</label>
+                    <input type="text" id="formMenu" required placeholder="Contoh: Paket Sate: Rp 40.000" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-orange-500 text-sm font-medium">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Alamat Lengkap Sentani</label>
+                    <input type="text" id="formAddress" required placeholder="Contoh: Jl. Kemiri No. 5, Sentani Kota" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-orange-500 text-sm font-medium">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Keunikan Warung</label>
+                <input type="text" id="formUniqueness" required placeholder="Contoh: kuahnya bening super segar / tempat lesehan adem" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-orange-500 text-sm font-medium">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase text-slate-500 mb-2">URL Gambar Makanan</label>
+                <input type="url" id="formImage" required placeholder="https://images.unsplash.com/photo-..." class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-orange-500 text-sm font-medium">
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg shadow-orange-500/20 text-sm cursor-pointer">
+                <i class="fa-solid fa-plus mr-1.5"></i> Terbitkan Secara Online
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200/60 py-12 text-center">
+        <p class="text-slate-900 font-extrabold text-sm">Sentani Bites &copy; 2026</p>
+        <p class="text-[11px] text-slate-400 font-medium mt-1">Platform Direktori Kuliner Paling Gak Bikin Bingung, Bro! 🔥</p>
+    </footer>
+
+    <!-- ENGINE SUPABASE REAL-TIME DATABASE -->
+    <script>
+        // URL SUDAH OTOMATIS TERISI DENGAN BENAR DI SINI, BRO!
+        const SUPABASE_URL = "https://rcnyenyxvlwokhraytcu.supabase.co";
+        
+        // TINGGAL GANTI TULISAN DI BAWAH INI DENGAN ANON KEY SUPABASE-MU YA!
+        const SUPABASE_ANON_KEY = "sb_publishable_HCGta4JWxPrWqhpoOmlXng_bx2A8U3f";
+
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        let database = [];
+        const restoGrid = document.getElementById('restoGrid');
+        const searchInput = document.getElementById('searchInput');
+        const notFoundMessage = document.getElementById('notFoundMessage');
+        const notFoundText = document.getElementById('notFoundText');
+        let currentCategory = 'all';
+
+        async function loadOnlineData() {
+            notFoundMessage.classList.remove('hidden');
+            notFoundText.innerText = "Mengambil data kuliner dari internet...";
+            try {
+                const { data, error } = await _supabase
+                    .from('sentani_bites')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+                database = data;
+                renderCards();
+            } catch (err) {
+                console.error(err);
+                notFoundText.innerText = "Gagal memuat data online. Cek pengaturan tabel Supabase-mu bro!";
+            }
+        }
+
+        function renderCards() {
+            restoGrid.innerHTML = '';
+            const searchValue = searchInput.value.toLowerCase().trim();
+            let hasResults = false;
+
+            database.forEach(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchValue) || item.menu.toLowerCase().includes(searchValue);
+                const matchesCategory = (currentCategory === 'all' || item.category === currentCategory);
+
+                if (matchesSearch && matchesCategory) {
+                    hasResults = true;
+                    const cardHTML = `
+                        <div class="restaurant-card group bg-white rounded-3xl border border-slate-200/60 overflow-hidden shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="relative overflow-hidden aspect-[4/3]">
+                                    <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
+                                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-slate-900 text-[11px] font-bold px-3 py-1.5 rounded-xl border border-white/20">
+                                        <i class="fa-solid fa-star text-amber-500"></i> ${item.rating || '4.5'}
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="text-xl font-bold text-slate-950 tracking-tight group-hover:text-orange-500 transition-colors">${item.name}</h4>
+                                    <span class="text-slate-400 text-xs font-semibold inline-flex items-center mt-1"><i class="fa-solid fa-location-dot text-slate-300 mr-1.5"></i>${item.location}</span>
+                                    <p class="text-slate-600 text-xs font-medium leading-relaxed mb-3 mt-4">
+                                        Lagi cari spot makan enak Sentani yang beneran bikin nagih, bro? Kamu wajib coba menu andalan di <strong>${item.name}</strong>, yaitu <strong>${item.menu}</strong> yang sukses bikin semua orang ngiler. Rasanya itu lho, punya ${item.unique} dan nggak bakal kamu temuin di tempat lain.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <a href="https://maps.google.com/?q=${encodeURIComponent(item.name + ' ' + item.location)}" target="_blank" class="block text-center bg-slate-950 text-white font-bold py-3.5 px-4 rounded-xl hover:bg-orange-500 shadow-md transition-all duration-300 text-xs tracking-wide">
+                                    <i class="fa-solid fa-map-location-dot mr-1.5"></i> Buka Rute Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    restoGrid.insertAdjacentHTML('beforeend', cardHTML);
+                }
+            });
+
+            if (hasResults) {
+                notFoundMessage.classList.add('hidden');
+            } else {
+                notFoundMessage.classList.remove('hidden');
+                notFoundText.innerText = "Waduh bro, kulinernya gak ketemu!";
+            }
+        }
+
+        document.getElementById('addRestoForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = "Memproses Upload...";
+            submitBtn.disabled = true;
+            
+            const newResto = {
+                name: document.getElementById('formName').value,
+                location: document.getElementById('formAddress').value,
+                category: document.getElementById('formCategory').value,
+                rating: (Math.random() * (5.0 - 4.3) + 4.3).toFixed(1),
+                menu: document.getElementById('formMenu').value,
+                image: document.getElementById('formImage').value,
+                unique: document.getElementById('formUniqueness').value,
+                suasana: "nyaman dan bikin betah, pas mantap"
+            };
+
+            try {
+                const { error } = await _supabase.from('sentani_bites').insert([newResto]);
+                if (error) throw error;
+                document.getElementById('addRestoForm').reset();
+                await loadOnlineData();
+            } catch (err) {
+                alert("Gagal kirim ke cloud, periksa tabel/keys Supabase-mu bro!");
+                console.error(err);
+            } finally {
+                submitBtn.innerHTML = '<i class="fa-solid fa-plus mr-1.5"></i> Terbitkan Secara Online';
+                submitBtn.disabled = false;
+            }
+        });
+
+        searchInput.addEventListener('input', renderCards);
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-slate-950', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200/60');
+            });
+            event.currentTarget.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200/60');
+            event.currentTarget.classList.add('bg-slate-950', 'text-white', 'shadow-md');
+            renderCards();
+        }
+
+        loadOnlineData();
+    </script>
+</body>
+</html>
