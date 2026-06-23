@@ -127,29 +127,28 @@
       </nav>
     </header>
 <!-- ================= HERO SECTION DENGAN LIVE BACKGROUND (PREMIUM & BRIGHTER) ================= -->
-    <section class="hero relative text-white min-h-[65vh] flex items-center justify-center p-6 overflow-hidden bg-zinc-900">
+    <!-- ================= HERO SECTION DENGAN LIVE BACKGROUND (ORIGINAL DARK THEME) ================= -->
+    <section class="hero relative text-white min-h-[65vh] flex items-center justify-center p-6 overflow-hidden bg-zinc-950">
       
-      <!-- VIDEO BACKGROUND - Diperterang (Opacity 65%) -->
-      <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-65">
+      <!-- VIDEO BACKGROUND (Dibuat samar/tipis agar tetap gelap elegan) -->
+      <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-30">
         <source src="https://assets.mixkit.co/videos/preview/mixkit-slow-moving-clouds-in-a-blue-sky-4433-large.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
 
-      <!-- OVERLAY CAMPURAN WARNA: ORANGE + VIOLET SENJA -->
-      <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/40 via-violet-600/25 to-transparent z-10"></div>
-      
-      <!-- Lapisan Pengaman agar Teks Tetap Tajam Dibaca -->
-      <div class="absolute inset-0 bg-gradient-to-b from-zinc-950/20 via-zinc-950/40 to-zinc-950/80 z-10"></div>
+      <!-- OVERLAY WARNA AWAL: HITAM PREMIUM & GRADASI ORANGE TIPIS -->
+      <div class="absolute inset-0 bg-gradient-to-tr from-orange-600/20 to-zinc-950/90 z-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-950 z-10"></div>
 
       <!-- KONTEN HERO -->
       <div class="container mx-auto max-w-6xl relative z-20 text-center flex flex-col items-center">
         <!-- Judul Utama -->
-        <h1 class="font-extrabold text-4xl md:text-6xl leading-tight mb-4 tracking-tight fade-up-premium drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
-          Jelajahi Cita Rasa <span class="text-orange-400 drop-shadow-none">Sentani</span><br>Yang Paling Hits!
+        <h1 class="font-extrabold text-4xl md:text-6xl leading-tight mb-4 tracking-tight fade-up-premium">
+          Jelajahi Cita Rasa <span class="text-orange-500">Sentani</span><br>Yang Paling Hits!
         </h1>
 
         <!-- Deskripsi -->
-        <p class="text-base md:text-xl text-zinc-100 max-w-2xl mb-8 leading-relaxed font-medium fade-up-premium delay-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+        <p class="text-base md:text-xl text-zinc-300 max-w-2xl mb-8 leading-relaxed fade-up-premium delay-1">
           Direktori kuliner premium untuk menemukan tempat makan terbaik, khas, dan paling diminati di Sentani, Papua.
         </p>
 
