@@ -127,9 +127,42 @@
       </nav>
     </header>
 
-    <!-- ================= HERO SECTION + SEARCH BAR INTEGRASI ================= -->
-    <section class="hero relative bg-zinc-950 text-white min-h-[65vh] flex items-center justify-center p-6 overflow-hidden">
-      <!-- Efek Gradasi Background -->
+    <!-- ================= HERO SECTION DENGAN LIVE BACKGROUND MOVE (PREMIUM) ================= -->
+    <section class="hero relative text-white min-h-[65vh] flex items-center justify-center p-6 overflow-hidden">
+      
+      <!-- [BARU] VIDEO BACKGROUND YANG BERGERAK PELAN -->
+      <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-40">
+        <!-- Contoh Video: Gerakan Awan Pelan (Bisa kamu ganti linknya nanti) -->
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-slow-moving-clouds-in-a-blue-sky-4433-large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- [BARU] OVERLAY HITAM GRADASI (BIAR VIDEO GA GANGGU TEKS) -->
+      <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-zinc-950/30 z-10"></div>
+      
+      <!-- Efek Cahaya Orange Neon (Tetap Ada) -->
+      <div class="absolute inset-0 bg-gradient-to-tr from-orange-600/10 to-zinc-950/60 z-10"></div>
+
+      <!-- KONTEN HERO (DI ATAS VIDEO & OVERLAY) -->
+      <div class="container mx-auto max-w-6xl relative z-20 text-center flex flex-col items-center">
+        <!-- Judul Utama (Efek Muncul Pertama) -->
+        <h1 class="font-extrabold text-4xl md:text-6xl leading-tight mb-4 tracking-tight fade-up-premium drop-shadow-2xl">
+          Jelajahi Cita Rasa <span class="text-orange-500">Sentani</span><br>Yang Paling Hits!
+        </h1>
+
+        <!-- Deskripsi (Efek Muncul Kedua / Delay 1) -->
+        <p class="text-base md:text-xl text-zinc-300 max-w-2xl mb-8 leading-relaxed fade-up-premium delay-1 drop-shadow-md">
+          Direktori kuliner premium untuk menemukan tempat makan terbaik, khas, dan paling diminati di Sentani, Papua.
+        </p>
+
+        <!-- Search Bar Mewah (Efek Muncul Ketiga / Delay 2) -->
+        <div class="w-full max-w-md bg-white p-2 rounded-2xl shadow-2xl border border-zinc-200 flex items-center px-4 text-zinc-950 fade-up-premium delay-2">
+          <i class="fa-solid fa-magnifying-glass text-zinc-400 mr-3 text-lg"></i>
+          <input type="text" id="searchInput" placeholder="Ketik menunya, bro... (papeda, ayam bakar...)" class="w-full bg-transparent focus:outline-none text-base text-zinc-800 placeholder-zinc-400 py-2">
+        </div>
+      </div>
+    </section>
+      <!-- Efek Gradasi Background -->et
       <div class="absolute inset-0 bg-gradient-to-tr from-orange-600/20 to-zinc-950/80 z-0"></div>
 
       <div class="container mx-auto max-w-6xl relative z-10 text-center flex flex-col items-center">
