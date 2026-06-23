@@ -100,27 +100,7 @@
 
     <!-- NAVBAR PREMIUM (Tag Header Sudah Dikembalikan dengan Aman) -->
     <header class="bg-white/80 backdrop-blur-md border-b border-zinc-100 sticky top-0 z-50">
-      <nav class="container mx-auto max-w-6xl p-5 flex items-center justify-between">
-        <!-- Logo -->
-        <a href="index.html" class="flex items-center gap-2">
-          <span class="text-3xl">🍲</span>
-          <span class="font-bold text-2xl text-zinc-950">Sentani<span class="text-orange-500">Bites</span></span>
-        </a>
-
-        <!-- Menu Desktop -->
-        <div class="hidden md:flex items-center gap-6">
-          <a href="index.html" class="text-zinc-700 hover:text-orange-500 font-medium transition duration-200">Home</a>
-          <a href="#directory-section" class="text-zinc-700 hover:text-orange-500 font-medium transition duration-200">Cari Menu</a>
-          <a href="#admin-section" class="text-zinc-700 hover:text-orange-500 font-medium transition duration-200">Admin</a>
-        </div>
-
-        <!-- Ikon Tambahan -->
-        <div class="flex items-center gap-4">
-            <button class="text-zinc-500 hover:text-orange-500">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-            </button>
-        </div>
-      </nav>
+     
     </header>
 <!-- ================= HERO SECTION + SEARCH BAR INTEGRASI (WITH PREMIUM FADE-UP) ================= -->
     <section class="hero relative bg-zinc-950 text-white min-h-[65vh] flex items-center justify-center p-6 overflow-hidden">
@@ -140,7 +120,40 @@
 
         <!-- Search Bar Mewah (Efek Muncul Ketiga / Delay 2) -->
         <div class="w-full max-w-md bg-white p-2 rounded-2xl shadow-2xl border border-zinc-200 flex items-center px-4 text-zinc-950 fade-up-premium delay-2">
-          <i class="fa-solid fa-magnifying-glass text-zinc-400 mr-3 text-lg"></i>
+          <<nav class="container mx-auto max-w-6xl p-5 flex items-center justify-between">
+        <!-- ================= LOGO BRAND PREMIUM & ESTETIK ================= -->
+        <a href="index.html" class="flex items-center gap-2.5 group select-none">
+          <div class="w-9 h-9 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+            <!-- Ikon Geometris Sendok Garpu Minimalis -->
+            <svg class="w-4 h-4 text-zinc-950" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+            </svg>
+          </div>
+          <span class="font-black text-2xl text-zinc-950 tracking-tight">Sentani<span class="text-orange-500 group-hover:text-red-500 transition-colors duration-300">Bites</span></span>
+        </a>
+
+        <!-- Menu Desktop -->
+        <div class="hidden md:flex items-center gap-6">
+          <a href="index.html" class="text-zinc-700 hover:text-orange-500 font-medium transition duration-200">Home</a>
+          <a href="#directory-section" class="text-zinc-700 hover:text-orange-500 font-medium transition duration-200">Cari Menu</a>
+          <a href="#admin-section" class="text-zinc-700 hover:text-orange-500 font-medium transition duration-200">Admin</a>
+        </div>
+
+        <!-- ================= PROFIL ADMIN GLOWING & MODERN ================= -->
+        <div class="flex items-center gap-4">
+            <div class="relative group cursor-pointer select-none">
+              <!-- Ring Cahaya Glowing di Sekitar Profil -->
+              <div class="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-red-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-300 animate-pulse"></div>
+              
+              <!-- Bulatan Profil (Teks ADM bisa diganti foto asli nanti lewat tag <img> jika mau) -->
+              <div class="relative w-9 h-9 bg-zinc-950 rounded-full flex items-center justify-center border border-zinc-800 text-[10px] font-black text-orange-400 tracking-wider shadow-inner">
+                ADM
+                <!-- Indikator Dot Hijau Aktif / Online -->
+                <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+              </div>
+            </div>
+        </div>
+          </nav>i class="fa-solid fa-magnifying-glass text-zinc-400 mr-3 text-lg"></i>
           <input type="text" id="searchInput" placeholder="Ketik menunya, bro... (papeda, ayam bakar...)" class="w-full bg-transparent focus:outline-none text-base text-zinc-800 placeholder-zinc-400 py-2">
         </div>
       </div>
