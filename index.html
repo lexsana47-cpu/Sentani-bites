@@ -74,7 +74,6 @@
 
     <!-- KODE ANIMASI SUBTEL & FADE-UP MEWAH -->
     <style>
-      /* Gerakan sangat lambat (35 detik) dan halus agar tidak mengganggu mata */
       @keyframes marqueeSlow {
         0% { transform: translateX(0%); }
         100% { transform: translateX(-100%); }
@@ -83,48 +82,24 @@
         display: inline-block;
         animation: marqueeSlow 35s linear infinite;
       }
-      
-      /* Efek Teks Muncul Perlahan dari Bawah saat Web Dibuka (Fade-Up) */
       .fade-up-premium {
         opacity: 0;
         animation: fadeUpEffect 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
       .delay-1 { animation-delay: 0.2s; }
       .delay-2 { animation-delay: 0.4s; }
-
       @keyframes fadeUpEffect {
         0% { opacity: 0; transform: translateY(16px); }
         100% { opacity: 1; transform: translateY(0); }
       }
     </style>
 
-    <!-- NAVBAR PREMIUM (Tag Header Sudah Dikembalikan dengan Aman) -->
+    <!-- NAVBAR PREMIUM -->
     <header class="bg-white/80 backdrop-blur-md border-b border-zinc-100 sticky top-0 z-50">
-     
-    </header>
-<!-- ================= HERO SECTION + SEARCH BAR INTEGRASI (WITH PREMIUM FADE-UP) ================= -->
-    <section class="hero relative bg-zinc-950 text-white min-h-[65vh] flex items-center justify-center p-6 overflow-hidden">
-      <!-- Efek Gradasi Background -->
-      <div class="absolute inset-0 bg-gradient-to-tr from-orange-600/20 to-zinc-950/80 z-0"></div>
-
-      <div class="container mx-auto max-w-6xl relative z-10 text-center flex flex-col items-center">
-        <!-- Judul Utama (Efek Muncul Pertama) -->
-        <h1 class="font-extrabold text-4xl md:text-6xl leading-tight mb-4 tracking-tight fade-up-premium">
-          Jelajahi Cita Rasa <span class="text-orange-500">Sentani</span><br>Yang Paling Hits!
-        </h1>
-
-        <!-- Deskripsi (Efek Muncul Kedua / Delay 1) -->
-        <p class="text-base md:text-xl text-zinc-300 max-w-2xl mb-8 leading-relaxed fade-up-premium delay-1">
-          Direktori kuliner premium untuk menemukan tempat makan terbaik, khas, dan paling diminati di Sentani, Papua.
-        </p>
-
-        <!-- Search Bar Mewah (Efek Muncul Ketiga / Delay 2) -->
-        <div class="w-full max-w-md bg-white p-2 rounded-2xl shadow-2xl border border-zinc-200 flex items-center px-4 text-zinc-950 fade-up-premium delay-2">
-          <<nav class="container mx-auto max-w-6xl p-5 flex items-center justify-between">
-        <!-- ================= LOGO BRAND PREMIUM & ESTETIK ================= -->
+      <nav class="container mx-auto max-w-6xl p-5 flex items-center justify-between">
+        <!-- LOGO BRAND PREMIUM & ESTETIK -->
         <a href="index.html" class="flex items-center gap-2.5 group select-none">
           <div class="w-9 h-9 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-            <!-- Ikon Geometris Sendok Garpu Minimalis -->
             <svg class="w-4 h-4 text-zinc-950" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
             </svg>
@@ -139,21 +114,38 @@
           <a href="#admin-section" class="text-zinc-700 hover:text-orange-500 font-medium transition duration-200">Admin</a>
         </div>
 
-        <!-- ================= PROFIL ADMIN GLOWING & MODERN ================= -->
+        <!-- PROFIL ADMIN GLOWING -->
         <div class="flex items-center gap-4">
             <div class="relative group cursor-pointer select-none">
-              <!-- Ring Cahaya Glowing di Sekitar Profil -->
               <div class="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-red-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-300 animate-pulse"></div>
-              
-              <!-- Bulatan Profil (Teks ADM bisa diganti foto asli nanti lewat tag <img> jika mau) -->
               <div class="relative w-9 h-9 bg-zinc-950 rounded-full flex items-center justify-center border border-zinc-800 text-[10px] font-black text-orange-400 tracking-wider shadow-inner">
                 ADM
-                <!-- Indikator Dot Hijau Aktif / Online -->
                 <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-emerald-500 ring-2 ring-white"></span>
               </div>
             </div>
         </div>
-          </nav>i class="fa-solid fa-magnifying-glass text-zinc-400 mr-3 text-lg"></i>
+      </nav>
+    </header>
+
+    <!-- ================= HERO SECTION + SEARCH BAR INTEGRASI ================= -->
+    <section class="hero relative bg-zinc-950 text-white min-h-[65vh] flex items-center justify-center p-6 overflow-hidden">
+      <!-- Efek Gradasi Background -->
+      <div class="absolute inset-0 bg-gradient-to-tr from-orange-600/20 to-zinc-950/80 z-0"></div>
+
+      <div class="container mx-auto max-w-6xl relative z-10 text-center flex flex-col items-center">
+        <!-- Judul Utama -->
+        <h1 class="font-extrabold text-4xl md:text-6xl leading-tight mb-4 tracking-tight fade-up-premium">
+          Jelajahi Cita Rasa <span class="text-orange-500">Sentani</span><br>Yang Paling Hits!
+        </h1>
+
+        <!-- Deskripsi -->
+        <p class="text-base md:text-xl text-zinc-300 max-w-2xl mb-8 leading-relaxed fade-up-premium delay-1">
+          Direktori kuliner premium untuk menemukan tempat makan terbaik, khas, dan paling diminati di Sentani, Papua.
+        </p>
+
+        <!-- Search Bar Mewah -->
+        <div class="w-full max-w-md bg-white p-2 rounded-2xl shadow-2xl border border-zinc-200 flex items-center px-4 text-zinc-950 fade-up-premium delay-2">
+          <i class="fa-solid fa-magnifying-glass text-zinc-400 mr-3 text-lg"></i>
           <input type="text" id="searchInput" placeholder="Ketik menunya, bro... (papeda, ayam bakar...)" class="w-full bg-transparent focus:outline-none text-base text-zinc-800 placeholder-zinc-400 py-2">
         </div>
       </div>
